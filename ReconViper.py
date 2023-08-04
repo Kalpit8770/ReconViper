@@ -6,7 +6,6 @@ import argparse
 import socket
 import shodan
 import json
-import pprint
 
 arg_parser = argparse.ArgumentParser(description="This information Gathering Tool.", usage="python3 info_gather.py -d DOMAIN [-s IP]")
 arg_parser.add_argument("-d", "--domain", help="Enter Domain Name For Footprinting.", required=True)
@@ -106,27 +105,25 @@ if ip:
 
     try:
         results = api.host(ip)
-        print(type(results))
-        # rs = json.dumps(results, indent=4)
-        # print(rs)
+
         with open(f"{domain}-log.json", 'w') as file :
             json.dump(results, file, indent=4)
             
-        # print("[+] Results found: {}".format(results['total']))
-        # logging.info("[+] Results found: {}".format(results['total']))
-        # for result in results['matches']:
         print("[+] IP: {}".format(results['ip_str']))
         logging.info("[+] IP: {}".format(results['ip_str']))
-        print("[+] Data:\n{}".format(results['data']))
-        logging.info("[+] Data:\n{}".format(results['data']))
-        print("[+] city:\n{}".format(results['city']))
-        logging.info("[+] city:\n{}".format(results['city']))
-        print("[+] Data:\n{}".format(results['latitude']))
-        logging.info("[+] Data:\n{}".format(results['latitude']))
+        print("[+] city: {}".format(results['city']))
+        logging.info("[+] city: {}".format(results['city']))
+        print("[+] latitude: {}".format(results['latitude']))
+        logging.info("[+] latitude: {}".format(results['latitude']))
+        print("[+] longitude: {}".format(results['longitude']))
+        logging.info("[+] longitude: {}".format(results['longitude']))
+        print("[+] asn: {}".format(results['asn']))
+        logging.info("[+] asn: {}".format(results['asn']))
+        print("[+] ports : {}".format(results['ports']))
+        logging.info("[+] ports: {}".format(results['ports']))
+        print("[+] Data: {}".format(results['data']))
+        logging.info("[+] Data: {}".format(results['data']))
         print()
-        results['data'][0]['http']['status']
-        results['ports']
-
     except shodan.APIError as e:
         print("[-] Shodan Search error: {}".format(e))
         logging.error("[-] Shodan Search error: {}".format(e))
