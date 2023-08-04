@@ -126,8 +126,8 @@ if ip:
             logging.info("[+] favicon: {}".format(results["data"][0]['http']['favicon']["location"]))
         except:
             pass
-        # print("[+] Data: {}".format(results['data']))
-        # logging.info("[+] Data: {}".format(results['data']))
+        print("[+] Data: {}".format(results['data']))
+        logging.info("[+] Data: {}".format(results['data']))
         print()
     except shodan.APIError as e:
         print("[-] Shodan Search error: {}".format(e))
