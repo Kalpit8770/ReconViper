@@ -121,8 +121,13 @@ if ip:
         logging.info("[+] asn: {}".format(results['asn']))
         print("[+] ports : {}".format(results['ports']))
         logging.info("[+] ports: {}".format(results['ports']))
-        print("[+] Data: {}".format(results['data']))
-        logging.info("[+] Data: {}".format(results['data']))
+        try:
+            print("[+] favicon: {}".format(results["data"][0]['http']['favicon']["location"]))
+            logging.info("[+] favicon: {}".format(results["data"][0]['http']['favicon']["location"]))
+        except:
+            pass
+        # print("[+] Data: {}".format(results['data']))
+        # logging.info("[+] Data: {}".format(results['data']))
         print()
     except shodan.APIError as e:
         print("[-] Shodan Search error: {}".format(e))
